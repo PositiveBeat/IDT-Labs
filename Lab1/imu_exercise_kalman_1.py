@@ -5,8 +5,9 @@
 # Copyright (c) 2015-2020 Kjeld Jensen kjen@mmmi.sdu.dk kj@kjen.dk
 
 # import libraries
-from math import pi, sqrt, atan2
 import matplotlib.pyplot as plt
+import numpy as np
+from math import pi, sqrt, atan2
 from pylab import ion
 from imu_box3d import imu_visualize
 
@@ -30,8 +31,8 @@ bias_gyro_y = 0.0 # [rad/measurement]
 bias_gyro_z = 0.0 # [rad/measurement]
 
 # variances
-gyroVar =
-pitchVar =
+gyroVar = 
+pitchVar = 
 
 # Kalman filter start guess
 estAngle = -pi/4.0
@@ -125,9 +126,9 @@ for line in f:
 	pitch = np.arctan2(acc_y, sqrt(acc_x**2 + acc_z**2))
 
 	# integrate gyro velocities to releative angles
-	gyro_x_rel +=
-	gyro_y_rel +=
-	gyro_z_rel +=
+	gyro_x_rel += gyro_x * (ts_now - ts_prev)
+	gyro_y_rel += gyro_y * (ts_now - ts_prev)
+	gyro_z_rel += gyro_z * (ts_now - ts_prev)
 
 	# Kalman prediction step (we have new data in each iteration)
 	if new_gyro_data available:
