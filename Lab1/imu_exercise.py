@@ -7,10 +7,10 @@
 ##### Insert initialize code below ###################
 
 ## Uncomment the file to read ##
-fileName = 'imu_razor_data_static.txt'
+# fileName = 'imu_razor_data_static.txt'
 # fileName = 'imu_razor_data_pitch_55deg.txt'
 # fileName = 'imu_razor_data_roll_65deg.txt'
-# fileName = 'imu_razor_data_yaw_90deg.txt'
+fileName = 'imu_razor_data_yaw_90deg.txt'
 
 ## IMU type
 #imuType = 'vectornav_vn100'
@@ -109,7 +109,7 @@ for line in f:
 
 	## Gyro ##
 	# gyro = (gyro_z + gyro_prev) / (ts_now - ts_prev)
-	gyro += (gyro_x + gyro_prev)
+	gyro += gyro_z * (ts_now - ts_prev)
 	gyro_array.append(gyro)
 
 	## Generic ##
