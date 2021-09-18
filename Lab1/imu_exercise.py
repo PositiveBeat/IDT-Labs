@@ -43,7 +43,7 @@ gyro_array = []
 time_dif_sum = 0
 gyro = 0
 gyro_prev = 0
-ts_prev = 0
+ts_prev = 1426506534.496967
 
 # looping through file
 
@@ -109,6 +109,7 @@ for line in f:
 
 	## Gyro ##
 	# gyro = (gyro_z + gyro_prev) / (ts_now - ts_prev)
+	# print(gyro)
 	gyro += gyro_z * (ts_now - ts_prev)
 	gyro_array.append(gyro)
 
@@ -133,20 +134,14 @@ filtered = signal.sosfilt(sos, acc_x_array)
 
 
 
-## Gyro ##
-
-
-
-
-
 # closing the file	
 f.close()
 
 # show the plot
 if showPlot == True:
-	# plt.plot(plotData)
+	plt.plot(plotData)
 	# plt.plot(filtered)
-	plt.plot(gyro_array)
+	# plt.plot(gyro_array)
 	plt.xlabel("Measurements")
 	plt.ylabel("Degrees")
 	# plt.title("Pitch")
