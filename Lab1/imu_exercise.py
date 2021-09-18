@@ -7,10 +7,10 @@
 ##### Insert initialize code below ###################
 
 ## Uncomment the file to read ##
-# fileName = 'imu_razor_data_static.txt'
+fileName = 'imu_razor_data_static.txt'
 # fileName = 'imu_razor_data_pitch_55deg.txt'
 # fileName = 'imu_razor_data_roll_65deg.txt'
-fileName = 'imu_razor_data_yaw_90deg.txt'
+# fileName = 'imu_razor_data_yaw_90deg.txt'
 
 ## IMU type
 #imuType = 'vectornav_vn100'
@@ -107,11 +107,12 @@ for line in f:
 	acc_x_array.append(roll * 180.0 / pi)	# To be used for filtering
 
 	## Gyro ##
-	gyro += gyro_z * (ts_now - ts_prev)
+	bias = (2.67 / 5924) * (pi / 180)	# Bias in rad
+	gyro += gyro_z * (ts_now - ts_prev) - bias
 
 	## Generic ##
 	plotValue = gyro
-	plotData.append (plotValue * 180.0 / pi)
+	plotData.append (plotValue * (180.0 / pi))
 	######################################################
 
 ## FILTER ##
@@ -128,7 +129,7 @@ sos = signal.butter(1, wn, btype='low', analog=False, output='sos', fs=None)
 filtered = signal.sosfilt(sos, acc_x_array)
 # filtered = signal.sosfilt(sos, plotData)
 
-
+print(plotData[-1])
 
 # closing the file	
 f.close()
@@ -139,6 +140,8 @@ if showPlot == True:
 
 	# plt.plot(filtered)
 	# plt.legend(["Unfiltered", "Filtered"])
+
+	# plt.ylim(-1, 1)	# For showing static without bias
 
 	plt.xlabel("Measurements")
 	plt.ylabel("Degrees")
