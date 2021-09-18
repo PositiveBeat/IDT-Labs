@@ -39,11 +39,9 @@ f = open (fileName, "r")
 # initialize variables
 count = 0
 acc_x_array = []
-gyro_array = []
 time_dif_sum = 0
 gyro = 0
 gyro_prev = 0
-ts_prev = 1426506534.496967
 
 # looping through file
 
@@ -58,6 +56,7 @@ for line in f:
 	ts_recv = float(csv[0])
 	if count == 1: 
 		ts_now = ts_recv # only the first time
+		ts_prev = ts_now
 	else:
 		ts_prev = ts_now
 		ts_now = ts_recv
@@ -108,10 +107,7 @@ for line in f:
 	acc_x_array.append(roll * 180.0 / pi)	# To be used for filtering
 
 	## Gyro ##
-	# gyro = (gyro_z + gyro_prev) / (ts_now - ts_prev)
-	# print(gyro)
 	gyro += gyro_z * (ts_now - ts_prev)
-	gyro_array.append(gyro)
 
 	## Generic ##
 	plotValue = gyro
@@ -124,13 +120,13 @@ T = time_dif_sum / count
 f_sample = 1 / T
 print("Sampling time: ", f_sample)
 # Cutoff frequency
-f_cutoff = 50  
+f_cutoff = 3
 
 # Filtering
 wn = f_cutoff / (f_sample * 2)
 sos = signal.butter(1, wn, btype='low', analog=False, output='sos', fs=None)
 filtered = signal.sosfilt(sos, acc_x_array)
-# filtered = signal.sosfilt(sos, gyro_array)
+# filtered = signal.sosfilt(sos, plotData)
 
 
 
@@ -140,8 +136,10 @@ f.close()
 # show the plot
 if showPlot == True:
 	plt.plot(plotData)
+
 	# plt.plot(filtered)
-	# plt.plot(gyro_array)
+	# plt.legend(["Unfiltered", "Filtered"])
+
 	plt.xlabel("Measurements")
 	plt.ylabel("Degrees")
 	# plt.title("Pitch")
