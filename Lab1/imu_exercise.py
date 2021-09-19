@@ -109,6 +109,7 @@ for line in f:
 	## Gyro ##
 	bias = (2.67 / 5924) * (pi / 180)	# Bias in rad
 	gyro += gyro_z * (ts_now - ts_prev) - bias
+	# gyro += gyro_z * (ts_now - ts_prev) 
 
 	## Generic ##
 	plotValue = gyro

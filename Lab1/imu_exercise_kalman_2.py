@@ -20,7 +20,7 @@ imuType = 'sparkfun_razor'
 
 # other parameters
 showPlot = True
-show3DLiveView = True
+show3DLiveView = False
 show3DLiveViewInterval = 3
 
 ##### Insert initialize code below ###################
@@ -134,17 +134,17 @@ for line in f:
 
 
 	# Kalman prediction step (we have new data in each iteration)
-	predAngle_x = estAngle_x + gyro_x_rel * T
+	predAngle_x = estAngle + gyro_x_rel * T
 	gyroVarAcc = gyroVarAcc + gyroVar
 	predVar = estVar + gyroVarAcc * T
-	estAngle_x = predAngle_x
+	estAngle = predAngle_x
 	estVar = predVar
 
 	# Kalman correction step (we have new data in each iteration)
 	K = predVar / (predVar + pitchVar)
 	corrAngle_x = predAngle_x + K * (pitch - predAngle_x)
 	corrVar = predVar * (1 - K)
-	estAngle_x = corrAngle_x
+	estAngle = corrAngle_x
 	estVar = corrVar
 	gyroVarAcc = 0
 
@@ -182,19 +182,22 @@ f.close()
 
 # show the plot
 if showPlot == True:
-	ion()
+	# ion()
 	plt.figure(1)
-	plt.title('Gyro integrated (relative) angle')
 	plt.plot(plotDataGyro)
-	plt.savefig('imu_exercise_gyro.png')
+	plt.title('Gyro integrated (relative) angle')
+	# plt.savefig('imu_exercise_gyro.png')
 
 	plt.figure(2)
 	plt.title('Accelerometer (blue) & Kalman estimation (red) angles')
 	plt.plot(plotDataAcc,'blue')
 	plt.plot(plotDataKalman,'red')
-	plt.savefig('imu_exercise_acc_kalman.png')
+	# plt.savefig('imu_exercise_acc_kalman.png')
 	plt.draw()
-	print ('Press enter to quit')
+	# print ('Press enter to quit')
 	# raw_input()
+
+	plt.show()
+
 
 
