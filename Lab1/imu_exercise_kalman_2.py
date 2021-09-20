@@ -31,11 +31,12 @@ bias_gyro_y = (2.67 / 5924) * (pi / 180) # [rad/measurement]
 bias_gyro_z = (2.67 / 5924) * (pi / 180) # [rad/measurement]
 
 # variances
-gyroVar = 0.1
-pitchVar = 5
+gyroVar = 0.01
+accVar = 1
 
 # Kalman filter start guess
-estAngle = -pi/4.0
+# estAngle = -pi/4.0
+estAngle = 0
 estVar = 3.14
 
 # Kalman filter housekeeping variables
@@ -81,6 +82,10 @@ for line in f:
 		ts_now = ts_recv # only the first time
 	ts_prev = ts_now
 	ts_now = ts_recv
+
+	if count == 10:
+		pass
+		# break
 
 	if imuType == 'sparkfun_razor': 
 		# import data from a SparkFun Razor IMU (SDU firmware)
@@ -135,22 +140,20 @@ for line in f:
 
 	# Kalman prediction step (we have new data in each iteration)
 	predAngle = estAngle + gyro_x_rel * T
-	gyroVarAcc = gyroVarAcc + gyroVar
-	predVar = estVar + gyroVarAcc * T
+	predVar = estVar + gyroVar * T
 	estAngle = predAngle
 	estVar = predVar
 
 	# Kalman correction step (we have new data in each iteration)
-	K = predVar / (predVar + pitchVar)
+	K = predVar / (predVar + accVar)
 	corrAngle = predAngle + K * (pitch - predAngle)
 	corrVar = predVar * (1 - K)
 	estAngle = corrAngle
 	estVar = corrVar
-	gyroVarAcc = 0
 
 
 	# define which value to plot as the Kalman filter estimate
-	kalman_estimate = K
+	kalman_estimate = estAngle
 
 	# define which value to plot as the absolute value (pitch/roll)
 	pitch_roll_plot = pitch
@@ -173,9 +176,9 @@ for line in f:
 
 	# if plotting is enabled
 	if showPlot == True:
-		plotDataGyro.append(gyro_rel_plot*180.0/pi)
-		plotDataAcc.append(pitch_roll_plot*180.0/pi)
-		plotDataKalman.append(kalman_estimate*180.0/pi)
+		plotDataGyro.append(gyro_rel_plot * 180.0/pi)
+		plotDataAcc.append(pitch_roll_plot * 180.0/pi)
+		plotDataKalman.append(kalman_estimate * 180.0/pi)
 
 # closing the file	
 f.close()
@@ -199,6 +202,3 @@ if showPlot == True:
 	# raw_input()
 
 	plt.show()
-
-
-
