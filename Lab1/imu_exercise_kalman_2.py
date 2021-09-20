@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from math import pi, sqrt, atan2
 from pylab import ion
-from imu_box3d import imu_visualize
+# from imu_box3d import imu_visualize
 
 # name of the file to read ##
 fileName = 'imu_razor_data_pitch_55deg.txt'
@@ -26,13 +26,13 @@ show3DLiveViewInterval = 3
 ##### Insert initialize code below ###################
 
 # approx. bias values determined by averaging over static measurements
-bias_gyro_x = 0.0 # [rad/measurement]
-bias_gyro_y = 0.0 # [rad/measurement]
-bias_gyro_z = 0.0 # [rad/measurement]
+bias_gyro_x = (2.67 / 5924) * (pi / 180) # [rad/measurement]
+bias_gyro_y = (2.67 / 5924) * (pi / 180) # [rad/measurement]
+bias_gyro_z = (2.67 / 5924) * (pi / 180) # [rad/measurement]
 
 # variances
-gyroVar = 0.001
-pitchVar = 0.05
+gyroVar = 0.1
+pitchVar = 5
 
 # Kalman filter start guess
 estAngle = -pi/4.0
@@ -62,10 +62,10 @@ f = open (fileName, "r")
 count = 0
 
 # initialize 3D liveview
-if show3DLiveView == True:
-	imuview = imu_visualize()
-	imuview.set_axis (0, 0, 0)
-	imuview.update()
+# if show3DLiveView == True:
+# 	imuview = imu_visualize()
+# 	imuview.set_axis (0, 0, 0)
+# 	imuview.update()
 
 # looping through file
 for line in f:
@@ -134,17 +134,17 @@ for line in f:
 
 
 	# Kalman prediction step (we have new data in each iteration)
-	predAngle_x = estAngle + gyro_x_rel * T
+	predAngle = estAngle + gyro_x_rel * T
 	gyroVarAcc = gyroVarAcc + gyroVar
 	predVar = estVar + gyroVarAcc * T
-	estAngle = predAngle_x
+	estAngle = predAngle
 	estVar = predVar
 
 	# Kalman correction step (we have new data in each iteration)
 	K = predVar / (predVar + pitchVar)
-	corrAngle_x = predAngle_x + K * (pitch - predAngle_x)
+	corrAngle = predAngle + K * (pitch - predAngle)
 	corrVar = predVar * (1 - K)
-	estAngle = corrAngle_x
+	estAngle = corrAngle
 	estVar = corrVar
 	gyroVarAcc = 0
 
@@ -161,15 +161,15 @@ for line in f:
 	######################################################
 
 	# if 3D liveview is enabled
-	if show3DLiveView == True and count % show3DLiveViewInterval == 0:
+	# if show3DLiveView == True and count % show3DLiveViewInterval == 0:
 
-		# determine what variables to liveview
-		roll_view = 0.0
-		yaw_view = 0.0
-		pitch_view = kalman_estimate
+	# 	# determine what variables to liveview
+	# 	roll_view = 0.0
+	# 	yaw_view = 0.0
+	# 	pitch_view = kalman_estimate
 
-		imuview.set_axis (-pitch_view, -yaw_view, roll_view)
-		imuview.update()
+	# 	imuview.set_axis (-pitch_view, -yaw_view, roll_view)
+	# 	imuview.update()
 
 	# if plotting is enabled
 	if showPlot == True:
@@ -183,17 +183,18 @@ f.close()
 # show the plot
 if showPlot == True:
 	# ion()
-	plt.figure(1)
+	# plt.figure(1)
 	plt.plot(plotDataGyro)
 	plt.title('Gyro integrated (relative) angle')
 	# plt.savefig('imu_exercise_gyro.png')
 
-	plt.figure(2)
-	plt.title('Accelerometer (blue) & Kalman estimation (red) angles')
+	# plt.figure(2)
+	plt.title('Accelerometer (blue), Gyro (green) & Kalman estimation (red) angles')
 	plt.plot(plotDataAcc,'blue')
+	plt.plot(plotDataGyro,'green')
 	plt.plot(plotDataKalman,'red')
 	# plt.savefig('imu_exercise_acc_kalman.png')
-	plt.draw()
+	# plt.draw()
 	# print ('Press enter to quit')
 	# raw_input()
 
