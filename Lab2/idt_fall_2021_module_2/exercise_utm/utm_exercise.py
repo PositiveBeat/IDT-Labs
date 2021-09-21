@@ -29,9 +29,12 @@ uc = utmconv()
 # print ('\nConverted from geodetic to UTM [m]')
 # print ('  %d %c %.5fe %.5fn' % (zone, letter, e_ref, n_ref))
 
+
+move_distance = 1    # km
+
 # MOVING EAST
 # Generating the East UTM coordinate
-e2 = e_ref + 1000.0 
+e2 = e_ref + move_distance * 1000.0 
 n2 = n_ref 
 
 # Convert back from UTM to geodetic
@@ -43,13 +46,13 @@ print ('  longitude: %.8f'  % (lon_e))
 d_e = gcf_distance(lat_ref, lon_ref, lat_e, lon_e)
 print ('\nMoving East:')
 print ('  distance:     %.8f' % (d_e))
-print ('  Error in %%:  %.8f' % (100 * (d_e - 1) / 1))
+print ('  Error in %%:  %.8f' % (100 * (d_e - move_distance) / move_distance))
 
 
 # MOVING NORTH
 # Generating the North UTM coordinate
 e3 = e_ref
-n3 = n_ref + 1000.0
+n3 = n_ref + move_distance * 1000.0
 
 # Convert back from UTM to geodetic
 (lat_n, lon_n) = uc.utm_to_geodetic (hemisphere, zone, e3, n3)
@@ -60,4 +63,4 @@ print ('  longitude: %.8f'  % (lon_n))
 d_n = gcf_distance(lat_ref, lon_ref, lat_n, lon_n)
 print ('\nMoving North:')
 print ('  distance:     %.8f' % (d_n))
-print ('  Error in %%:  %.8f' % (100 * (d_n - 1) / 1))
+print ('  Error in %%:  %.8f' % (100 * (d_n - move_distance) / move_distance))
