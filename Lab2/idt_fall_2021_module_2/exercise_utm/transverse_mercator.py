@@ -29,7 +29,7 @@
 """
 The tranmerc implements conversion between geodetic coordinates and the
 Transverse Mercator projection.
- 
+
 A substantial portion of the algorithms used in this class are derived from
 an implemtation in C by the U.S. Army Topographic Engineering Center,
 Geospatial Information Division. The C source files state that no license
@@ -73,7 +73,7 @@ false_northing, scale_factor)
 						  meridian.
 
 geodetic_to_tranmerc (lat, lon)
-	lat: Latitude, accepted ange is [-pi/2;pi/2] radians
+	lat: Latitude, accepted range is [-pi/2;pi/2] radians
 	lon: Longitude, accepted range is [-pi;pi] radians
 
 The functions do not check for out of range or errors in input.
