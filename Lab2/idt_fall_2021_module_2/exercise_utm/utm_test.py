@@ -44,7 +44,7 @@ from math import pi, cos
 
 # geodetic reference coordinate
 lat1 =  55.0
-lon1 = 009.0
+lon1 = 9.0
 
 print ('First position [deg]:')
 print ('  latitude:  %.8f'  % (lat1))
