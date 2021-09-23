@@ -7,7 +7,7 @@ NMEA Data format
 [5] 	- East longitude
 [6] 	- Quality indicator
 [7] 	- Nr. of satellites
-[8] 	- HDOP
+[8] 	- HDOP (horizontal dilution of precision)
 [9] 	- Altitude of antenna
 [10] 	- Units of altitude of antenna
 [11] 	- Geodial separation
