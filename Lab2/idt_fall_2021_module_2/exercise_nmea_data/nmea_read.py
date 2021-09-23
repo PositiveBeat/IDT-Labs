@@ -59,5 +59,6 @@ if __name__ == "__main__":
   print ('Importing file')
   nmea = nmea_class()
   nmea.import_file ('nmea_trimble_gnss_eduquad_flight.txt')
+  # nmea.import_file ('nmea_ublox_neo_24h_static.txt')
   nmea.print_data()
  
