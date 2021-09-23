@@ -46,7 +46,7 @@ class nmea_class:
     if file_ok == True:
       pt_num = 0
       for i in range(len(lines)): # for all lines
-        if len(lines[i]) > 0 and lines[i][0] != '#': # if not a comment or empty line
+        if (len(lines[i]) > 0 and lines[i][0] == '$'): # Only record non-empty lines and NMEA data (always start with $) 
           csv = lines[i].split (',') # split into comma separated list
           self.data.append(csv)
 

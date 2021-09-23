@@ -1,18 +1,18 @@
 NMEA Data format
 [0] 	- #GPS
-[1] 	- time
-[2] 	- latitude
+[1] 	- Time
+[2] 	- Latitude
 [3] 	- North latitude
-[4] 	- longitude
+[4] 	- Longitude
 [5] 	- East longitude
-[6] 	- quality indicator
-[7] 	- nr. satellites
+[6] 	- Quality indicator
+[7] 	- Nr. of satellites
 [8] 	- HDOP
-[9] 	- altitude of antenna
-[10] 	- unit in meters
-[11] 	- geodial separation
-[12] 	- units in meters
-[13] 	- age of correction
+[9] 	- Altitude of antenna
+[10] 	- Units of altitude of antenna
+[11] 	- Geodial separation
+[12] 	- Units of geodial separation
+[13] 	- Age of correction
 [14] 	- station ID and checksum
 
 Source: https://www.gpsworld.com/what-exactly-is-gps-nmea-data/
