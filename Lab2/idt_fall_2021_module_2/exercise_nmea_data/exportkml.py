@@ -213,10 +213,10 @@ if __name__ == "__main__":
   # color: red,green,blue,cyan,yellow,grey,red_poly,yellow_poly,green_poly
   # altitude: use 'absolute' or 'relativeToGround'
   kml.trksegbegin ('', '', 'red', 'absolute') 
-  kml.pt(55.47, 10.33, 0.0)
-  kml.pt(55.47, 10.34, 0.0)
-  kml.pt(55.48, 10.34, 0.0)
-  kml.pt(55.47, 10.33, 0.0)
+  kml.pt(55.47, 10.33, 20.0)
+  kml.pt(55.47, 10.34, 20.0)
+  kml.pt(55.48, 10.34, 20.0)
+  kml.pt(55.47, 10.33, 20.0)
   kml.trksegend()
   kml.end()
 
