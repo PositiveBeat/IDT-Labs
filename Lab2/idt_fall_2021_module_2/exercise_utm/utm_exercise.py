@@ -8,9 +8,17 @@ from math import pi, cos, acos, radians, sin, asin, sqrt
 #### Functions ####
 # Great circle formulae: Distance between points
 def gcf_distance(lat1, lon1, lat2, lon2):
+    # Degree to rad
+    lat1 = (pi/180) * lat1
+    lon1 = (pi/180) * lon1
+    lat2 = (pi/180) * lat2
+    lon2 = (pi/180) * lon2
+
     distance_radians = 2 * asin(sqrt((sin((lat1 - lat2) / 2))**2 + cos(lat1) * cos(lat2) * (sin((lon1 - lon2) / 2))**2))
-    radius_km = 1.852 * (180 * 60 / pi)
-    return radius_km *  distance_radians
+    radius_earth_km = 1.852 * (180 * 60 / pi)
+    d = radius_earth_km * distance_radians
+    return d
+
 
 #### Program ####
 # Geodetic reference coordinate
