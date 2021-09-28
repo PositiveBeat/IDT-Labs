@@ -3,7 +3,7 @@ This code is copied from utm_test.py, and modified by Group 1.
 """
 #### Imports ####
 from utm import utmconv
-from math import pi, cos, acos, radians, sin, asin, sqrt
+from math import pi, cos, sin, asin, sqrt
 
 #### Functions ####
 # Great circle formulae: Distance between points
