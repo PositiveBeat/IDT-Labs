@@ -32,16 +32,17 @@ if __name__ == '__main__':
     antenna1 = [0, 20]
     antenna2 = [1000, 20]
     frequencies = [2.4, 433/1000, 5.8]  # GHz
-    n = 1       # Fresnel zone number
+    n = 1   # Fresnel zone number
 
-i = 1
-for freq in frequencies:
-    # plt.figure()
-    plt.subplot(2, 2, i)
-    plot_fresnel(antenna1, antenna2, freq, n)
-    plt.title('Frequency: ' + str(freq) + ' GHz')
-    plt.show(block=False)
-    i += 1
-    
-plt.show()
+    i = 1
+    for freq in frequencies:
+        plt.subplot(2, 2, i)
+        
+        plot_fresnel(antenna1, antenna2, freq, n)
+        
+        plt.title('Frequency: ' + str(freq) + ' GHz')
+        plt.show(block=False)
+        i += 1
+        
+    plt.show()  # Block new plots untill all windows are closed
 
