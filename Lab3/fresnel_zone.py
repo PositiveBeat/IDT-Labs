@@ -16,21 +16,20 @@ def plot_fresnel(a1, a2, f, n):
     ellipse = Ellipse(centre, width, fresnel_radius, angle, alpha=0.2, edgecolor='red', linestyle='--', linewidth=2)
     
     # Plot Ellipse
-    ax = plt.gca()
+    ax = plt.gca()  # Init plot
     ax.add_patch(ellipse)
     plt.scatter(a1[0], a1[1], zorder=2, color='red')
     plt.scatter(a2[0], a2[1], zorder=2, color='red')
-    marginx = width / 10
-    plt.xlim([a1[0] - marginx, a2[0] + marginx])
-    plt.ylim([-10, 50])
     plt.xlabel('Distance [m]')
     plt.ylabel('Height [m]')
     plt.legend(['Fresnel Zone', 'Antennas'])
+    plt.title('Frequency: ' + str(f) + ' GHz')
+
+    return fresnel_radius, angle
 
 
-if __name__ == '__main__':
-
-    antenna1 = [0, 40]
+def ex2_3():
+    antenna1 = [0, 20]
     antenna2 = [1000, 20]
     frequencies = [2.4, 433/1000, 5.8]  # GHz
     n = 1   # Fresnel zone number
@@ -41,9 +40,34 @@ if __name__ == '__main__':
         
         plot_fresnel(antenna1, antenna2, freq, n)
         
-        plt.title('Frequency: ' + str(freq) + ' GHz')
+        plt.xlim([-10, 1010])
+        plt.ylim([-10, 50])
+
         plt.show(block=False)
         i += 1
-        
+    
     plt.show()  # Block new plots untill all windows are closed
 
+def ex2_4_a():
+    antenna1 = [0, 0.5]
+    antenna2 = [np.sqrt(400**2 - 50**2), 50]
+    freq = 2.4  # GHz
+    n = 1   # Fresnel zone number
+
+    fresnel_radius, angle = plot_fresnel(antenna1, antenna2, freq, n)
+
+    rectangle = plt.Rectangle((antenna2[0]/3, 0), 50, 20, fc='grey')
+    
+    ax.add_patch(rectangle)
+    plt.show()  # Block new plots untill all windows are closed
+
+if __name__ == '__main__':
+    ax = plt.gca()  # Init plot
+
+    # ex2_3()
+    ex2_4_a()
+
+
+
+
+#TODO - FIX ANGLE ERROR
