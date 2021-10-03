@@ -7,12 +7,13 @@ def plot_fresnel(a1, a2, f, n):
     a1 = np.array(a1)
     a2 = np.array(a2)
     
-    # Calculate ellipse shape
+    # Calculate ellipse shape and orientation
     centre = ((a1[0] + a2[0])/2, (a1[1] + a2[1])/2) # Midpoint Formula
     width = np.linalg.norm(a1 - a2)
     fresnel_radius = np.sqrt((n * f * (width/2)**2) / (width))
-    print(fresnel_radius)
-    ellipse = Ellipse(centre, width, fresnel_radius, alpha=0.2, edgecolor='red', linestyle='--', linewidth=2)
+    diff_vec = [a2[0] - a1[0], a2[1] - a1[1]]
+    angle = np.rad2deg(np.arctan2(diff_vec[1], diff_vec[0]))
+    ellipse = Ellipse(centre, width, fresnel_radius, angle, alpha=0.2, edgecolor='red', linestyle='--', linewidth=2)
     
     # Plot Ellipse
     ax = plt.gca()
@@ -29,7 +30,7 @@ def plot_fresnel(a1, a2, f, n):
 
 if __name__ == '__main__':
 
-    antenna1 = [0, 20]
+    antenna1 = [0, 40]
     antenna2 = [1000, 20]
     frequencies = [2.4, 433/1000, 5.8]  # GHz
     n = 1   # Fresnel zone number
