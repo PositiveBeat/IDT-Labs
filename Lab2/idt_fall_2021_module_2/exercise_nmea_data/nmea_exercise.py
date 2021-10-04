@@ -30,7 +30,7 @@ print("Done!")
 figure, axis = plt.subplots(2, 1)
 
 # Altitude above Mean Sea Level
-# WHAT INDEX IS THIS? D:
+# This was the hint in the lecture
 x, y = get_row(nmea_eduquad.data, 9)
 axis[0].plot(x, y, 'green')
 axis[0].set_title('Altitude')
@@ -40,7 +40,7 @@ x, y = get_row(nmea_eduquad.data, 7)
 axis[1].plot(x, y, 'red')
 axis[1].set_title('Nr. of satellites')
 
-# plt.show()
+plt.show()
 
 # Map showing the drone track during the drone flight
 kml = kmlclass()

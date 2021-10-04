@@ -9,7 +9,8 @@ from math import pi, cos, acos, radians, sin, asin, sqrt
 # Great circle formulae: Distance between points
 def gcf_distance(lat1, lon1, lat2, lon2):
     distance_radians = 2 * asin(sqrt((sin((lat1 - lat2) / 2))**2 + cos(lat1) * cos(lat2) * (sin((lon1 - lon2) / 2))**2))
-    radius_km = 1.852 * (180 * 60 / pi)
+    # radius_km = 1.852 * (180 * 60 / pi)
+    radius_km = 1
     return radius_km *  distance_radians
 
 #### Program ####
