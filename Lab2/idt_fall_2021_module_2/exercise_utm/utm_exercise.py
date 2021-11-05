@@ -3,15 +3,28 @@ This code is copied from utm_test.py, and modified by Group 1.
 """
 #### Imports ####
 from utm import utmconv
-from math import pi, cos, acos, radians, sin, asin, sqrt
+from math import pi, cos, sin, asin, sqrt
 
 #### Functions ####
 # Great circle formulae: Distance between points
 def gcf_distance(lat1, lon1, lat2, lon2):
+    # Degree to rad
+    lat1 = (pi/180) * lat1
+    lon1 = (pi/180) * lon1
+    lat2 = (pi/180) * lat2
+    lon2 = (pi/180) * lon2
+
     distance_radians = 2 * asin(sqrt((sin((lat1 - lat2) / 2))**2 + cos(lat1) * cos(lat2) * (sin((lon1 - lon2) / 2))**2))
+<<<<<<< HEAD
     # radius_km = 1.852 * (180 * 60 / pi)
     radius_km = 1
     return radius_km *  distance_radians
+=======
+    radius_earth_km = 1.852 * (180 * 60 / pi)
+    d = radius_earth_km * distance_radians
+    return d
+
+>>>>>>> cc895b2dc6c2a67bb9876f1004ed0cb34b3f1dfb
 
 #### Program ####
 # Geodetic reference coordinate
