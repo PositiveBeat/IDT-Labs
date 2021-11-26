@@ -1,0 +1,129 @@
+
+
+
+
+
+
+
+
+
+source ~/catkin_ws/devel/setup.bash
+
+
+# For telemetry
+roslaunch mavlink_lora mavlink_lora.launch serial_device:=/dev/ttyUSB0 serial_baudrate:=57600 heartbeats:=true
+
+
+source ~/catkin_ws/devel/setup.bash
+python3 ~/catkin_ws/src/mavlink_lora/scripts/show_pos.py
+
+
+
+dmesg
+
+screen /dev/ttyUSB0 57600 8N1
+
+
+
+# Not working for fc
+screen /dev/ttyACM0 115200 8N1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Connect to Pi:
+screen /dev/ttyUSB0 115200
+
+
+Force arm:
+commander arm -f
+
+Delete everything in folder:
+sudo rm -r *
+
+
+
+
+
+Systemd setup:
+
+sudo cp beginPy_service.sh /usr/bin/beginPy_service.sh 
+sudo chmod +x /usr/bin/beginPy_service.sh 
+
+sudo cp beginPy_service.service /etc/systemd/system/beginPy_service.service 
+sudo chmod 644 /etc/systemd/system/beginPy_service.service 
+
+
+
+sudo systemctl start beginPy_service 
+sudo systemctl status -l beginPy_service 
+sudo systemctl stop beginPy_service 
+
+
+sudo systemctl enable beginPy_service 
+sudo systemctl disable beginPy_service 
+
+
+
+Pi cam orientation:
+Potrait when logo is right side up.
+
+
