@@ -20,10 +20,11 @@ class Logger():
         
         self.logger = csv.writer(log, dialect = 'excel')
 
+        self.logger.writerow('Time', 'Latitude', 'Longitude')
+
 
     def log_to_file(self, *data):
 
         row = [data]
-        # row.extend(data)
-
+        
         self.logger.writerow(row)

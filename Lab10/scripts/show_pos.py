@@ -100,10 +100,9 @@ class pos_node:
 		print('Position:           {0}'.format(pos_text))
 		print('Altitude:           {0}'.format(alt_text))
 		print('\n')
-  
-		self.logger.log_to_file(self.lat, self.lon)
 
-	
+		self.logger.log_to_file(now, self.lat, self.lon)
+
 
 	def on_mavlink_msg(self, msg):
 		# save timestamp of last package of anything received from the drone

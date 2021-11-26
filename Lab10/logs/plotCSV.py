@@ -15,22 +15,24 @@ def plotCSV_d(filename):
     
     with open(filename + '.csv','r') as csvfileQuick:
         plots = csv.reader(csvfileQuick, delimiter=',')
+        next(plots)
         for row in plots:
             lat.append(float(row[0]))
             lon.append(float(row[1]))
 
-    # plt.plot(lat, lon, label = 'Position')
-    # plt.xlabel('Lattitude')
-    # plt.ylabel('Longitude')
-    # plt.title('GNSS Position')
-    # plt.legend()
+    plt.plot(lat, lon, label = 'Position')
+    plt.xlabel('Lattitude')
+    plt.ylabel('Longitude')
+    plt.title('GNSS Position')
+    plt.legend()
+    plt.axis('equal')
     
-    # plt.show()
-    
+    plt.show()
+
 
 
 if __name__ == '__main__':
-    plotCSV_d('data_085254')
+    plotCSV_d('logs/data_085254')
     
     # Map showing the drone track during the drone flight
     kml = kmlclass()
@@ -44,6 +46,6 @@ if __name__ == '__main__':
 
         # Add to file
         kml.pt(float(la), float(lo), 40)
-        
+
     kml.trksegend()
     kml.end()
