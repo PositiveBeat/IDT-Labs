@@ -1,5 +1,5 @@
 '''
-Plotting csv files for case d).
+Plotting csv files.
 
 Author: Nicoline Louise Thomsen
 '''
