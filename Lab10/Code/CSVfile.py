@@ -62,8 +62,7 @@ if __name__ == '__main__':
     track.loadCSV('../logs/data_103923')
 
     newTrack = CSVfile()
-    newTrack.createCSV('CVS_test', ['Time', 'Latitude', 'Longitude'])
+    newTrack.createCSV('generated_files/CVS_test', ['Time', 'Latitude', 'Longitude'])
     newTrack.writeCSV_all([[3141, 13413, 643], [543, 5275, 42], [777, 6534, 87]])
     newTrack.writeCSV_one([543, 5275, 42])
     newTrack.writeCSV_one([777, 6534, 87])
-
