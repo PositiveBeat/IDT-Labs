@@ -53,12 +53,10 @@ class planclass:
 
         self.plan['groundStation'] = groundstation
 
-    
-    def record_plan(self, lat, lon, altitude):
 
-        assert (len(lat) == len(lon)), "Lat and lon does not have same length"
+    def record_plan(self, geodetic, altitude):
 
-        for i in range(len(lat)):
+        for i in range(len(geodetic)):
 
             command = 22 if i == 0 else 16  # Set initial command
 
@@ -67,7 +65,7 @@ class planclass:
             item['command'] = command
             item['doJumpId'] = i + 1
             item['frame'] = 3
-            item['params'] = [0,0,0,0, lat[i], lon[i], altitude]
+            item['params'] = [0,0,0,0, geodetic[i][0], geodetic[i][1], altitude]
             item['type'] = 'SimpleItem'
             self.items.append (item)
 

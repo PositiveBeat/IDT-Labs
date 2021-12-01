@@ -11,6 +11,7 @@ track = CSVfile()
 track.loadCSV('../logs/data_103923')
 
 
+
 #### CREATE KML FILE ####
 if print_files == True:
     kml = kmlclass()
@@ -33,14 +34,21 @@ for i in range(len(track.t)):
 
 
 
+#### CONVERT TO GEODETIC ####
+geodetic = []
+for easting, northing in utm:
+    lat, lon = uc.utm_to_geodetic (hemisphere, zone, easting, northing)
+    geodetic.append([lat, lon])
+
+
 
 #### CREATE PLAN ####
 if print_files == True:
     altitude = 50
-    home = [track.lat[0], track.lon[0], altitude]
+    home = geodetic[0] + [altitude]
 
     plan = planclass('generated_files/mission.plan')
     plan.begin('QGroundControl')
-    plan.record_plan(track.lat, track.lon, altitude)
+    plan.record_plan(geodetic, altitude)
     plan.end(home)
 
