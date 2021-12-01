@@ -8,6 +8,7 @@ import csv
 from exportkml import kmlclass
 import matplotlib.pyplot as plt
 
+t = []
 lat = []
 lon = []
 
@@ -17,22 +18,23 @@ def plotCSV_d(filename):
         plots = csv.reader(csvfileQuick, delimiter=',')
         next(plots)
         for row in plots:
-            lat.append(float(row[0]))
-            lon.append(float(row[1]))
+            t.append(float(row[0]))
+            lat.append(float(row[1]))
+            lon.append(float(row[2]))
 
-    plt.plot(lat, lon, label = 'Position')
-    plt.xlabel('Lattitude')
-    plt.ylabel('Longitude')
-    plt.title('GNSS Position')
-    plt.legend()
-    plt.axis('equal')
+    # plt.plot(lat, lon, label = 'Position')
+    # plt.xlabel('Lattitude')
+    # plt.ylabel('Longitude')
+    # plt.title('GNSS Position')
+    # plt.legend()
+    # plt.axis('equal')
     
-    plt.show()
+    # plt.show()
 
 
 
 if __name__ == '__main__':
-    plotCSV_d('logs/data_085254')
+    plotCSV_d('logs/data_103923')
     
     # Map showing the drone track during the drone flight
     kml = kmlclass()

@@ -103,4 +103,3 @@ plan_json = json.dumps(plan, indent=4, sort_keys=True)
 file = open('mission.plan','w') 
 file.write (plan_json)
 file.close()
-
