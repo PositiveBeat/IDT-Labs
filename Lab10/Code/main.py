@@ -7,7 +7,7 @@ from rm_outliers import outliers_begone
 from utm import utmconv
 
 
-print_files = False
+print_files = True
 
 
 track = CSVfile()
@@ -38,22 +38,9 @@ for i in range(len(track.t)):
 
 
 #### REMOVE OUTLIERS ####
-
-
-
-# print(len(utm))
 purged = outliers_begone()
 utm = purged.purge(utm)
-# print(len(utm))
 
-
-
-
-
-
-
-
-# print(track.lat, track.lon)
 
 
 #### CONVERT TO GEODETIC ####
@@ -62,17 +49,6 @@ for t, easting, northing in utm:
     lat, lon = uc.utm_to_geodetic (hemisphere, zone, easting, northing)
     geodetic.append([lat, lon])
     
-
-print(len(geodetic))
-
-plt.plot(geodetic[0], geodetic[1], label = 'Position')
-plt.xlabel('Lattitude')
-plt.ylabel('Longitude')
-plt.title('GNSS Position')
-plt.legend()
-plt.axis('equal')
-plt.show()
-
 
 
 #### CREATE PLAN ####
