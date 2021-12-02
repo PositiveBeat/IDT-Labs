@@ -41,7 +41,7 @@ for i in range(len(track.t)):
 purged = outliers_begone()
 utm = purged.purge(utm)
 
-
+print(len(utm))
 
 #### CONVERT TO GEODETIC ####
 geodetic = []

@@ -11,7 +11,7 @@ class outliers_begone:
     def purge(self, utm):
         
         accepted = []
-        t_prev = utm[0][0]
+        t_prev = 0
         n_prev = utm[1][0]
         e_prev = utm[2][0]
 
@@ -27,7 +27,7 @@ class outliers_begone:
                 dist = sqrt((northing - n_prev)**2 + (easting - e_prev)**2)
                 time_diff = time - t_prev
             
-                margin = 0.5 + time_diff*0.5
+                margin = 0.5 + time_diff * 0.5
                 if (dist < (1.4 * time_diff + margin)):   # 1.4 meters pr. second + margin
                     accepted.append([time, northing, easting])
                     
@@ -41,7 +41,7 @@ class outliers_begone:
 if __name__ == '__main__':
     test = outliers_begone()
 
-    utm = [[1,2,3],[2,2,3],[3,2,3]]
+    utm = [[5,2,3],[5,2,3],[5,2,3]]
     
     purged = test.purge(utm)
     
