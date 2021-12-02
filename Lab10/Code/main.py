@@ -1,6 +1,9 @@
+import matplotlib.pyplot as plt
+
 from CSVfile import CSVfile
 from exportkml import kmlclass
 from exportplan import planclass
+from rm_outliers import outliers_begone
 from utm import utmconv
 
 
@@ -30,15 +33,45 @@ utm = []
 
 for i in range(len(track.t)):
     (hemisphere, zone, letter, easting, northing) = uc.geodetic_to_utm (track.lat[i], track.lon[i])
-    utm.append([easting, northing])
+    utm.append([track.t[i], easting, northing])
 
+
+
+#### REMOVE OUTLIERS ####
+
+
+
+# print(len(utm))
+purged = outliers_begone()
+utm = purged.purge(utm)
+# print(len(utm))
+
+
+
+
+
+
+
+
+# print(track.lat, track.lon)
 
 
 #### CONVERT TO GEODETIC ####
 geodetic = []
-for easting, northing in utm:
+for t, easting, northing in utm:
     lat, lon = uc.utm_to_geodetic (hemisphere, zone, easting, northing)
     geodetic.append([lat, lon])
+    
+
+print(len(geodetic))
+
+plt.plot(geodetic[0], geodetic[1], label = 'Position')
+plt.xlabel('Lattitude')
+plt.ylabel('Longitude')
+plt.title('GNSS Position')
+plt.legend()
+plt.axis('equal')
+plt.show()
 
 
 
