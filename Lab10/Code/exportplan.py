@@ -35,6 +35,12 @@
 import json
 
 
+# Command definitions
+MAV_CMD_NAV_WAYPOINT = 16
+MAV_CMD_NAV_LAND = 21
+MAV_CMD_NAV_TAKEOFF = 22
+
+
 class planclass:
     def __init__(self, filename):
         self.filename = filename
@@ -58,7 +64,13 @@ class planclass:
 
         for i in range(len(geodetic)):
 
-            command = 22 if i == 0 else 16  # Set initial command
+            # Set mission command
+            if (i == 0):
+                command = MAV_CMD_NAV_TAKEOFF
+            elif(i == -1):
+                command = MAV_CMD_NAV_LAND
+            else:
+                command = MAV_CMD_NAV_WAYPOINT
 
             item = {}
             item['autoContinue'] = True
@@ -71,6 +83,7 @@ class planclass:
 
 
     def end(self, home_position):
+
         mission = {}
         mission['cruiseSpeed'] = 15
         mission['firmwareType'] = 3
