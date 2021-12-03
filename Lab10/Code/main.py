@@ -3,7 +3,8 @@ import matplotlib.pyplot as plt
 from CSVfile import CSVfile
 from exportkml import kmlclass
 from exportplan import planclass
-from rm_outliers import outliers_begone
+from outliers_begone import outliers_begone
+from simplify_path import simplify
 from utm import utmconv
 
 
@@ -41,7 +42,13 @@ for i in range(len(track.t)):
 purged = outliers_begone()
 utm = purged.purge(utm)
 
-print(len(utm))
+
+
+#### SIMPLIFY PATH ####
+simple = simplify()
+# utm = simple.simplify_maxDistance()
+
+
 
 #### CONVERT TO GEODETIC ####
 geodetic = []
@@ -54,10 +61,9 @@ for t, easting, northing in utm:
 #### CREATE PLAN ####
 if print_files == True:
     altitude = 50
-    home = geodetic[0] + [altitude]
+    home = geodetic[-1] + [altitude]
 
     plan = planclass('generated_files/mission.plan')
-    plan.begin('QGroundControl')
+    plan.begin('QGroundControl', home)
     plan.record_plan(geodetic, altitude)
-    plan.end(home)
-
+    plan.end()

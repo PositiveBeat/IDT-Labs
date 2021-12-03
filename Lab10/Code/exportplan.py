@@ -49,7 +49,7 @@ class planclass:
         self.items = []
 
     
-    def begin(self, groundstation):
+    def begin(self, groundstation, home):
         geoFence = {}
         self.plan['fileType'] = 'Plan'
 
@@ -58,6 +58,7 @@ class planclass:
         self.plan['geoFence'] = geoFence
 
         self.plan['groundStation'] = groundstation
+        self.home_position = home
 
 
     def record_plan(self, geodetic, altitude):
@@ -67,7 +68,7 @@ class planclass:
             # Set mission command
             if (i == 0):
                 command = MAV_CMD_NAV_TAKEOFF
-            elif(i == -1):
+            elif (i == len(geodetic) - 1):
                 command = MAV_CMD_NAV_LAND
             else:
                 command = MAV_CMD_NAV_WAYPOINT
@@ -82,14 +83,14 @@ class planclass:
             self.items.append (item)
 
 
-    def end(self, home_position):
+    def end(self):
 
         mission = {}
         mission['cruiseSpeed'] = 15
         mission['firmwareType'] = 3
         mission['hoverSpeed'] = 5
         mission['items'] = self.items
-        mission['plannedHomePosition'] = home_position
+        mission['plannedHomePosition'] = self.home_position
         mission['vehicleType'] = 2
         mission['version'] = 2
         self.plan['mission'] = mission

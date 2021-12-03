@@ -7,7 +7,6 @@ class outliers_begone:
         pass
   
 
-
     def purge(self, utm):
         
         accepted = []
@@ -36,6 +35,7 @@ class outliers_begone:
                     t_prev = time
                 
         return accepted
+
 
 
 if __name__ == '__main__':
