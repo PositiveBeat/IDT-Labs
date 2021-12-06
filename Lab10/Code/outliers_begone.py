@@ -7,7 +7,7 @@ class outliers_begone:
         pass
   
 
-    def purge(self, utm):
+    def purge(self, time, utm):
         
         accepted = []
         t_prev = 0
@@ -15,24 +15,24 @@ class outliers_begone:
         e_prev = utm[2][0]
 
         for i, row in enumerate(utm):
-            time = row[0]
-            northing = row[1]
-            easting = row[2]
+            t = time[i]
+            northing = row[0]
+            easting = row[1]
             
             if (i == 0):
-                accepted.append([time, northing, easting])
+                accepted.append([northing, easting])
             
             else:
                 dist = sqrt((northing - n_prev)**2 + (easting - e_prev)**2)
-                time_diff = time - t_prev
+                time_diff = t - t_prev
             
                 margin = 0.5 + time_diff * 0.5
                 if (dist < (1.4 * time_diff + margin)):   # 1.4 meters pr. second + margin
-                    accepted.append([time, northing, easting])
+                    accepted.append([northing, easting])
                     
                     n_prev = northing
                     e_prev = easting
-                    t_prev = time
+                    t_prev = t
                 
         return accepted
 

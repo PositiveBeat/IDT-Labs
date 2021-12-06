@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 class CSVfile:
     def __init__(self):
 
-        self.t = []
+        self.time = []
         self.lat = []
         self.lon = []
 
@@ -22,7 +22,7 @@ class CSVfile:
             plots = csv.reader(csvfileQuick, delimiter=',')
             next(plots)
             for row in plots:
-                self.t.append(float(row[0]))
+                self.time.append(float(row[0]))
                 self.lat.append(float(row[1]))
                 self.lon.append(float(row[2]))
 
