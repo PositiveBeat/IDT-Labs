@@ -5,7 +5,7 @@ from math import sqrt
 class outliers_begone:
     def __init__(self):
         pass
-  
+
 
     def purge(self, time, utm):
         
@@ -13,6 +13,8 @@ class outliers_begone:
         t_prev = 0
         n_prev = utm[1][0]
         e_prev = utm[2][0]
+
+        expected_distance = 1.4 # Walking distance over one secind [m]
 
         for i, row in enumerate(utm):
             t = time[i]
@@ -25,9 +27,9 @@ class outliers_begone:
             else:
                 dist = sqrt((northing - n_prev)**2 + (easting - e_prev)**2)
                 time_diff = t - t_prev
-            
+
                 margin = 0.5 + time_diff * 0.5
-                if (dist < (1.4 * time_diff + margin)):   # 1.4 meters pr. second + margin
+                if (dist < (expected_distance * time_diff + margin)):
                     accepted.append([northing, easting])
                     
                     n_prev = northing
