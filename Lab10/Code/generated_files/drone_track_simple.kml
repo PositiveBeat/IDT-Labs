@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>Simplified Drone Track</name>
+<description>Drone track during the drone flight</description>
+<Style id="red">
+  <LineStyle>
+    <color>ff0000ff</color>
+    <width>0.7</width>
+  </LineStyle>
+</Style>
+<Style id="green">
+  <LineStyle>
+    <color>ff00ff00</color>
+    <width>0.7</width>
+  </LineStyle>
+</Style>
+<Style id="blue">
+  <LineStyle>
+    <color>ffff0000</color>
+    <width>0.7</width>
+  </LineStyle>
+</Style>
+<Style id="cyan">
+  <LineStyle>
+    <color>ffffff00</color>
+    <width>0.7</width>
+  </LineStyle>
+</Style>
+<Style id="yellow">
+  <LineStyle>
+    <color>ff00ffff</color>
+    <width>0.7</width>
+  </LineStyle>
+</Style>
+<Style id="grey">
+  <LineStyle>
+    <color>ff888888</color>
+    <width>0.7</width>
+  </LineStyle>
+</Style>
+<Style id="orange">
+  <LineStyle>
+    <color>ff00a5ff</color>
+    <width>0.7</width>
+  </LineStyle>
+</Style>
+<Style id="purple">
+  <LineStyle>
+    <color>ffal20f0</color>
+    <width>0.7</width>
+  </LineStyle>
+</Style>
+<Style id="green_poly">
+  <LineStyle>
+    <color>ff00aa00</color>
+    <width>0.7</width>
+  </LineStyle>
+  <PolyStyle>
+    <color>2000cc00</color>
+  </PolyStyle>
+</Style>
+<Style id="yellow_poly">
+  <LineStyle>
+    <color>ff0000ff</color>
+    <width>0.7</width>
+  </LineStyle>
+  <PolyStyle>
+    <color>2000ffff</color>
+  </PolyStyle>
+</Style>
+<Style id="red_poly">
+  <LineStyle>
+    <color>ff0000ff</color>
+    <width>0.7</width>
+  </LineStyle>
+  <PolyStyle>
+    <color>120000ff</color>
+  </PolyStyle>
+</Style>
+<Style id="orange_poly">
+  <LineStyle>
+    <color>ff00a5ff</color>
+    <width>0.7</width>
+  </LineStyle>
+  <PolyStyle>
+    <color>1200a5ff</color>
+  </PolyStyle>
+</Style>
+<Style id="purple_poly">
+  <LineStyle>
+    <color>ffa020f0</color>
+    <width>0.7</width>
+  </LineStyle>
+  <PolyStyle>
+    <color>10a020f0</color>
+  </PolyStyle>
+</Style>
+<Placemark>
+<name></name>
+<description></description>
+<styleUrl>#red</styleUrl>
+<LineString>
+<altitudeMode>absolute</altitudeMode>
+<coordinates>
+010.43122200,55.36739090,40.0
+010.43120380,55.36733580,40.0
+010.43125630,55.36711280,40.0
+010.43136590,55.36682660,40.0
+010.43123170,55.36678740,40.0
+010.43107920,55.36677280,40.0
+010.43076950,55.36676890,40.0
+010.43031040,55.36673990,40.0
+010.42971440,55.36674200,40.0
+010.42962650,55.36676160,40.0
+010.42947040,55.36673850,40.0
+010.42929460,55.36673540,40.0
+010.42924870,55.36674820,40.0
+010.42925170,55.36680080,40.0
+010.42936230,55.36683000,40.0
+010.42944290,55.36681170,40.0
+010.42949000,55.36684400,40.0
+010.42953550,55.36684990,40.0
+010.42965680,55.36684960,40.0
+010.42969750,55.36683270,40.0
+010.42977140,55.36683870,40.0
+010.43000280,55.36681090,40.0
+010.43022690,55.36681690,40.0
+010.43025560,55.36683220,40.0
+010.43022190,55.36685280,40.0
+010.43024760,55.36685880,40.0
+010.43037060,55.36683990,40.0
+010.43046990,55.36685750,40.0
+010.43050580,55.36691230,40.0
+010.43048580,55.36699720,40.0
+010.43041090,55.36707530,40.0
+010.43037860,55.36717300,40.0
+010.43037250,55.36725290,40.0
+010.43039960,55.36733910,40.0
+010.43036940,55.36750040,40.0
+010.43039930,55.36754290,40.0
+010.43070360,55.36773600,40.0
+010.43101470,55.36772690,40.0
+010.43126790,55.36778340,40.0
+010.43130230,55.36774870,40.0
+010.43131450,55.36769160,40.0
+010.43127950,55.36758320,40.0
+010.43128890,55.36746760,40.0
+</coordinates>
+</LineString>
+</Placemark>
+</Document>
+</kml>

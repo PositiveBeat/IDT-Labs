@@ -6492,7 +6492,7 @@
             },
             {
                 "autoContinue": true,
-                "command": 16,
+                "command": 21,
                 "doJumpId": 406,
                 "frame": 3,
                 "params": [
@@ -6508,8 +6508,8 @@
             }
         ],
         "plannedHomePosition": [
-            55.36739090000001,
-            10.431221999999993,
+            55.367467600000005,
+            10.431288899999995,
             50
         ],
         "vehicleType": 2,
