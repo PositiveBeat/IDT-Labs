@@ -12,8 +12,8 @@ from utm import utmconv
 print_files = True
 
 track = CSVfile()
-# track.loadCSV('../logs/data_103923')
-track.loadCSV('data_outlier')
+track.loadCSV('../logs/data_103410')
+# track.loadCSV('data_outlier')
 
 
 
@@ -36,11 +36,11 @@ print("points after removing outliers:  ", len(utm))
 
 
 
-#### SIMPLIFY PATH ####
-# simple = simplify()
-# epsilon = 10
-# utm = simple.rdp(np.array(utm), epsilon)
-# print("points after simplifying:        ", len(utm))
+### SIMPLIFY PATH ####
+simple = simplify()
+epsilon = 10
+utm = simple.rdp(np.array(utm), epsilon)
+print("points after simplifying:        ", len(utm))
 
 
 
